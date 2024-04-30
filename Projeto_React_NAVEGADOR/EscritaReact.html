@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemplo do React no Navegador</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <script type="text/babel">
+      /*          
+        Uso do element com uma só estrutura
+        */
+
+      const container = document.getElementById("texto1"); //Uso da variável como estrutura do elemento que possui
+      const element = <h1>Texto a div txt1 - Bem vindo</h1>; //Uso da variável como estrutura de texto
+      ReactDOM.render(element, container); // Retorno da variável como contéudo no elemento
+
+      /*
+            Uso de Função para poluar uma estrutura de dados
+        */
+      const numbers = []; // variável do tipo array
+      //comando de repetição for com o objeto de carregar a variável com os valores de 1 até 20
+      for (var i = 1; i <= 20; i++) {
+        numbers[i] = i;
+      }
+      // função que variável receber uma valor em estrutura de array
+      function NumberList(props) {
+        const numbers = props.numbers; //estrutura dos variável
+        // definido variável para carregar com o mapeamento feito na estrutura do array
+        const listItems = numbers.map((number) => <li>{number}</li>);
+        return (
+          <ul>{listItems}</ul> // retorno do itens lidos no mapeamento
+        );
+      }
+      const root = ReactDOM.createRoot(document.getElementById("texto2")); // instanciamento da variável com elemento
+      root.render(<NumberList numbers={numbers} />); // retorno do conteúdo para o elemento com o execução da função
+
+      /*
+       */
+
+      // Definindo uma variável do tipo array, com estrutura semelhante ao JSON
+      const posts = [
+        {
+          id: 1,
+          title: "Informação",
+          content: "Texto descritivo sobre a informação",
+        },
+        {
+          id: 2,
+          title: "Dados sobre a Informação",
+          content: "Os dados sobre a informação",
+        },
+        {
+          id: 3,
+          title: "Estudo de Caso",
+          content: "Forma de estudo para entender a causa e o efeito",
+        },
+        //inserir mais 3 items
+      ];
+
+      function Blog(props) {
+        const sidebar = (
+          <ul>
+            {props.posts.map((post) => (
+              <li key={post.id}>{post.title}</li>
+            ))}
+          </ul>
+        );
+        const content = props.posts.map((post) => (
+          <div key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+          </div>
+        ));
+        return (
+          <div>
+            {sidebar}
+            <hr />
+            {content}
+          </div>
+        );
+      }
+      const texto3 = ReactDOM.createRoot(document.getElementById("texto3"));
+      texto3.render(<Blog posts={posts} />);
+    </script>
+    <div id="texto1"></div>
+    <div id="texto2"></div>
+    <div id="texto3"></div>
+  </body>
+</html>

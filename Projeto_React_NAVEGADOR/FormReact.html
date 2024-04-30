@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemplo do React no Navegador</title>
+
+    <!-- Estrutura que acionar a biblioteca react diretamento no navegador -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+
+    <!-- Estrutura que acionar o uso do DOM (documento com o conteúdo atualizado da página) Virtual para  na biblioteca react diretamento no navegador -->
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <!-- Estrutura que acionar o uso o transpilador Babel no navegador, caso seja necessário o reconhecimento dos códigos pelo navegador -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="resultado"></div>
+    <!-- Estrutura que define a execução no script no transpilador Babel -->
+    <script type="text/babel">
+      /*
+      Criando uma função com um parâmetro ola, do tipo array
+      */
+      function Formulario({ ola }) {
+        //o Return será devolvido em HTML com essas características
+        return (
+          <div>
+            <h1>{ola}</h1>
+            <form method="POST">
+              <input placeholder="Informe aqui" />
+              <button type="submit">Enviar</button>
+            </form>
+          </div>
+        );
+      }
+      //Atualize na tela => ReactDOM.render
+      ReactDOM.render(
+        //como se fosse uma section "React.Fragment".
+        <React.Fragment>
+          <Formulario ola="Olá! Como posso te chamar?" />
+          <Formulario ola="Aonde você mora?" />
+          <Formulario ola="Para qual time você torce?" />
+        </React.Fragment>,
+        document.querySelector("#resultado")
+      );
+    </script>
+  </body>
+</html>

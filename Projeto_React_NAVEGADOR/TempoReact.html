@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemplo do React no Navegador</title>
+
+    <!-- Estrutura que acionar a biblioteca react diretamento no navegador -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+
+    <!--
+        Estrutura que acionar o uso do DOM (documento com o conteúdo atualizado da página)
+        Virtual para  na biblioteca react diretamento no navegador -->
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <!-- Estrutura que acionar o uso o transpilador Babel no navegador, caso seja necessário o
+        reconhecimento dos códigos pelo navegador -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- Estrutura que define a execução no script no transpilador Babel -->
+    <script type="text/babel">
+      //instância variável com o nome container como objeto do elemento div com o id divTime
+      const container = document.getElementById("divTime");
+
+      //instância a variável com o nome root como objeto a ser usando no DOM
+      const root = ReactDOM.createRoot(container);
+
+      // função que instância o objeto element
+      function relogio() {
+        const element = (
+          <div>
+            <h1>React no navegador usando o transpilador Babel</h1>
+            <h2>
+              Data Atual: {new Date().getDate()} / {new Date().getMonth()} /{" "}
+              {new Date().getFullYear()}{" "}
+            </h2>
+            <h2>Data Atual: {new Date().toLocaleDateString()} </h2>
+            <h2>Horário Atual: {new Date().toLocaleTimeString()}</h2>
+            <h2>cronometro em segundos: {60 - new Date().getSeconds()}</h2>
+          </div>
+        );
+
+        // retorna ao documento o objeto instanciado
+        root.render(element);
+      }
+
+      //Atualiza o conteúdo da página a cada 1 milisegundo.
+      setInterval(relogio, 1000);
+    </script>
+
+    <div id="divTime"></div>
+  </body>
+</html>
+,
